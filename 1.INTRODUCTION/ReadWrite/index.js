@@ -31,8 +31,22 @@ const url = require('url');
 
 //////////////////// Server ////////////////////////////////
 const server = http.createServer((req, resp) => {
-    console.log(req.url);
-    resp.end('Hello from the server!');
+    //console.log(req.url);
+
+    const pathName = req.url;
+
+    if(pathName === '/' || pathName === '/overview'){
+        resp.end('This is the OVERVIEW');
+    } else if (pathName === '/product'){
+        resp.end('This is the PRODUCT');
+    }else {
+        resp.writeHead(404, {
+            'Content-type': 'text/html',
+            'my-own-header': 'hello-world'
+        });
+        resp.end('<h1>Not found!</h1>');
+    }
+    //resp.end('Hello from the server!');
 });
 
 server.listen(8000, '127.0.0.1', () => {
