@@ -30,16 +30,39 @@ const url = require('url');
 // console.log('Will read file!');
 
 //////////////////// Server ////////////////////////////////
+
+const overview = fs.readFileSync(`${__dirname}/templates/overview.html`, 'utf-8');
+const card = fs.readFileSync(`${__dirname}/templates/card.html`, 'utf-8');
+const product = fs.readFileSync(`${__dirname}/templates/product.html`, 'utf-8');
+
+const data = fs.readFileSync(`${__dirname}/data.json`, 'utf-8');
+const dataObj = JSON.parse(data);
+
 const server = http.createServer((req, resp) => {
     //console.log(req.url);
 
     const pathName = req.url;
 
+    // Overview page
     if(pathName === '/' || pathName === '/overview'){
-        resp.end('This is the OVERVIEW');
-    } else if (pathName === '/product'){
-        resp.end('This is the PRODUCT');
-    }else {
+        resp.writeHead(200, {'Content-type': 'text/html'});
+        resp.end(overview);
+    }
+    // Product page
+     else if (pathName === '/product'){
+        resp.end('Product');
+    } 
+    
+    // API
+    else if (pathName === '/api'){
+
+        resp.writeHead(200, {'Content-type': 'application/json'});
+        resp.end(data);
+        
+    } 
+    
+    // Not found
+    else {
         resp.writeHead(404, {
             'Content-type': 'text/html',
             'my-own-header': 'hello-world'
