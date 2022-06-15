@@ -16,8 +16,6 @@ mongoose
   console.log('Connected!');
 });
 
-//console.log(process.env);
-
 // 4) Starter server
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
