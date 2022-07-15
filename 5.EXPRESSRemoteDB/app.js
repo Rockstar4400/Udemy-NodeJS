@@ -18,7 +18,7 @@ app.use(express.static(`${__dirname}/public`))
 
 
 app.use((req, res, next) => {
-    console.log('Hello middleware');
+    console.log('Consumed API');
     next();
 });
 app.use((req, res, next) =>{

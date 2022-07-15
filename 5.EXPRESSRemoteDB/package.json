@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start:dev": "nodemon server.js",
+    "start": "nodemon server.js",
     "start:prod": "SET NODE_ENV=production nodemon server.js"
   },
   "author": "",
@@ -25,5 +25,8 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.30.0",
     "prettier": "^2.6.2"
+  },
+  "engines": {
+    "node": ">=10.0.0"
   }
 }
